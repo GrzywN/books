@@ -1,4 +1,3 @@
-
 # Algorytmy. Ilustrowany przewodnik
 
 [Algorytmy. Ilustrowany przewodnik](https://helion.pl/ksiazki/algorytmy-ilustrowany-przewodnik-aditya-bhargava,algipv.htm#format/d)
