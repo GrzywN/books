@@ -1,0 +1,21 @@
+dopóki n >= 4:
+    m <- n div 4
+
+    max <- 0
+    dla i = 1, 2..m:
+        jeżeli t[i] > max:
+            max <- t[i]
+
+    min <- max
+    dla i = 1, 2..m:
+        jeżeli t[i] < min:
+            min <- t[i]
+
+    dla i = 1, 2..n:
+        jeżeli p[i] < min:
+            p[i] <- 0
+        jeżeli p[i] > max:
+            p[i] <- 0
+
+    usun(t, m)
+    n <- n - (2 * m)

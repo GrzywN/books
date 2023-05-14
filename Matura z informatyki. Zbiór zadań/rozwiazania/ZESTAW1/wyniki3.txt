@@ -1,0 +1,15 @@
+3.1
+3
+
+3.2
+Linia: 0
+Ile: 2
+Jakie: [33, 35, 17]
+
+3.3
+Linia: 0 | Pole: 277.87980765071796
+Linia: 4 | Pole: 206946.74542001743
+
+3.4
+Największy obwód: 2141
+Ile trójkątów o takim obwodzie: 1

@@ -1,0 +1,117 @@
+5.1
+SELECT * FROM sklady WHERE nr_skladu NOT IN (SELECT nr_skladu FROM przejazdy);
+CREATE VIEW zadanie5_1 AS SELECT * FROM sklady WHERE nr_skladu NOT IN (SELECT nr_skladu FROM przejazdy);
+
+5.2
+SELECT nr_biletu, ilosc FROM bilety WHERE nr_przejazdu = 504 ORDER BY ilosc DESC;
+CREATE VIEW zadanie5_2 AS SELECT nr_biletu, ilosc FROM bilety WHERE nr_przejazdu = 504 ORDER BY ilosc DESC;
+
+5.3
+SELECT COUNT(DISTINCT lokomotywa) AS "Ile różnych modeli lokomotyw" FROM sklady;
+CREATE VIEW zadanie5_3 AS SELECT COUNT(DISTINCT lokomotywa) AS "Ile różnych modeli lokomotyw" FROM sklady;
+
+5.4
+SELECT
+    bilety.nr_przejazdu,
+    CONCAT(
+        SUM(ilosc * cena *(1 - ulga)),
+        " zł"
+    ) AS "Łączna kwota zakupionych biletów w zł"
+FROM
+    bilety
+JOIN przejazdy ON bilety.nr_przejazdu = przejazdy.nr_przejazdu
+GROUP BY
+    bilety.nr_przejazdu
+ORDER BY
+    SUM(ilosc * cena *(1 - ulga))
+DESC
+LIMIT 1;
+
+CREATE VIEW
+    zadanie5_4 AS
+SELECT
+    bilety.nr_przejazdu,
+    CONCAT(
+        SUM(ilosc * cena *(1 - ulga)),
+        " zł"
+    ) AS "Łączna kwota zakupionych biletów w zł"
+FROM
+    bilety
+JOIN przejazdy ON bilety.nr_przejazdu = przejazdy.nr_przejazdu
+GROUP BY
+    bilety.nr_przejazdu
+ORDER BY
+    SUM(ilosc * cena *(1 - ulga))
+DESC
+LIMIT 1;
+
+5.5
+SELECT
+    stacja_pocz AS "Stacja początkowa",
+    SUM(bilety.ilosc) AS "Ile osób wyjechało"
+FROM
+    bilety
+JOIN przejazdy ON bilety.nr_przejazdu = przejazdy.nr_przejazdu
+GROUP BY
+    stacja_pocz
+ORDER BY
+    `Ile osób wyjechało`
+DESC
+LIMIT 1;
+
+CREATE VIEW zadanie5_5 AS SELECT
+    stacja_pocz AS "Stacja początkowa",
+    SUM(bilety.ilosc) AS "Ile osób wyjechało"
+FROM
+    bilety
+JOIN przejazdy ON bilety.nr_przejazdu = przejazdy.nr_przejazdu
+GROUP BY
+    stacja_pocz
+ORDER BY
+    `Ile osób wyjechało`
+DESC
+LIMIT 1;
+
+5.6
+a)
+SELECT nr_przejazdu, TIMEDIFF(czas_wyj, czas_przyj) AS "Najkrótszy czas drogi" FROM przejazdy ORDER BY `Najkrótszy czas drogi` ASC LIMIT 1;
+CREATE VIEW zadanie5_6a AS SELECT nr_przejazdu, TIMEDIFF(czas_przyj, czas_wyj) AS "Najkrótszy czas drogi" FROM przejazdy ORDER BY `Najkrótszy czas drogi` ASC LIMIT 1;
+
+b)
+SELECT nr_przejazdu, TIMEDIFF(czas_przyj, czas_wyj) AS "Najdłuższy czas drogi" FROM przejazdy ORDER BY `Najdłuższy czas drogi` DESC LIMIT 1;
+CREATE VIEW zadanie5_6b AS SELECT nr_przejazdu, TIMEDIFF(czas_przyj, czas_wyj) AS "Najdłuższy czas drogi" FROM przejazdy ORDER BY `Najdłuższy czas drogi` DESC LIMIT 1;
+
+5.7
+SELECT nr_przejazdu FROM przejazdy WHERE nr_przejazdu NOT IN (SELECT nr_przejazdu FROM bilety);
+CREATE VIEW zadanie5_7 AS SELECT nr_przejazdu FROM przejazdy WHERE nr_przejazdu NOT IN (SELECT nr_przejazdu FROM bilety);
+
+5.8
+SELECT
+    lokomotywa,
+    COUNT(*) AS "Liczba przejazdów",
+    DATA
+FROM
+    przejazdy
+JOIN sklady ON przejazdy.nr_skladu = sklady.nr_skladu
+GROUP BY
+    lokomotywa,
+    DATA
+ORDER BY
+    `Liczba przejazdów`
+DESC
+    ;
+
+CREATE VIEW zadanie5_8 AS SELECT
+    lokomotywa,
+    COUNT(*) AS "Liczba przejazdów",
+    DATA
+FROM
+    przejazdy
+JOIN sklady ON przejazdy.nr_skladu = sklady.nr_skladu
+GROUP BY
+    lokomotywa,
+    DATA
+ORDER BY
+    `Liczba przejazdów`
+DESC
+    ;
